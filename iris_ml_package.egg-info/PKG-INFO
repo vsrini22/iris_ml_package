@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: iris_ml_package
+Version: 0.1.0
+Summary: A machine learning package for the Iris dataset.
+Author: Your Name
+Author-email: your_email@example.com
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
