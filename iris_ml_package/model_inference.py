@@ -1,7 +1,6 @@
-import joblib
+import pandas as pd
 
-def load_model(filepath="models/iris_rf_model.pkl"):
-    return joblib.load(filepath)
-
-def make_prediction(model, data):
-    return model.predict(data)
+def predict(model, data):
+    """Make predictions using the trained model."""
+    predictions = model.predict(data)
+    return predictions

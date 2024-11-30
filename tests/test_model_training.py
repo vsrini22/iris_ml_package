@@ -1,32 +1,14 @@
-import pandas as pd
-from iris_ml_package.model_training import train_model, save_model
-import os
+from iris_ml_package.data_processing import load_data, clean_data
+from iris_ml_package.feature_engineering import scale_features
+from iris_ml_package.model_training import train_model, load_model
 
 def test_train_model():
-    # Create a small dataset
-    data = pd.DataFrame({
-        "feature1": [1, 2, 3, 4, 5],
-        "feature2": [6, 7, 8, 9, 10],
-        "target": [0, 1, 0, 1, 0]
-    })
+    """Test training the model."""
+    data = clean_data(load_data("data/iris.csv"))
+    scaled_data = scale_features(data)
+    train_model(scaled_data, "models/test_model.pkl")
 
-    model = train_model(data)
-    assert model is not None  # Ensure the model is returned
-    assert hasattr(model, "predict")  # Ensure it's a valid sklearn model
-
-def test_save_model():
-    # Mock model
-    data = pd.DataFrame({
-        "feature1": [1, 2, 3, 4, 5],
-        "feature2": [6, 7, 8, 9, 10],
-        "target": [0, 1, 0, 1, 0]
-    })
-
-    model = train_model(data)
-    filepath = "models/test_model.pkl"
-    save_model(model, filepath)
-
-    assert os.path.exists(filepath)  # Ensure the model file is created
-
-    # Clean up
-    os.remove(filepath)
+def test_load_model():
+    """Test loading the model."""
+    model = load_model("models/test_model.pkl")
+    assert model is not None

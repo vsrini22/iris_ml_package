@@ -1,8 +1,14 @@
 import pandas as pd
 
-def load_data(filepath="data/Iris.csv"):
-    return pd.read_csv(filepath)
+def load_data(file_path="data/iris.csv"):
+    """Load the Iris dataset."""
+    try:
+        data = pd.read_csv(file_path)
+        return data
+    except Exception as e:
+        raise FileNotFoundError(f"Error loading file: {e}")
 
 def clean_data(data):
-    # Example: Drop NA values
-    return data.dropna()
+    """Clean and preprocess the dataset."""
+    data = data.dropna()  # Remove missing values
+    return data

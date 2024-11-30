@@ -1,15 +1,13 @@
-name: CI Pipeline for Iris Project
+name: CI Pipeline
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
