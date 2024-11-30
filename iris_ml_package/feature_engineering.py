@@ -1,7 +1,7 @@
-def scale_features(dataframe):
-    from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler
 
+def scale_features(data):
     scaler = StandardScaler()
-    feature_columns = dataframe.columns.drop("target")
-    dataframe[feature_columns] = scaler.fit_transform(dataframe[feature_columns])
-    return dataframe
+    data_scaled = scaler.fit_transform(data.iloc[:, :-1])  # Scale features except the target
+    data.iloc[:, :-1] = data_scaled
+    return data

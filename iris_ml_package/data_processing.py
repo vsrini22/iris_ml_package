@@ -1,12 +1,8 @@
-from sklearn.datasets import load_iris
 import pandas as pd
 
-def load_data():
-    iris = load_iris(as_frame=True)
-    data = iris['data']
-    data['target'] = iris['target']
-    return data
+def load_data(filepath="data/Iris.csv"):
+    return pd.read_csv(filepath)
 
-def clean_data(dataframe):
-    dataframe.dropna(inplace=True)
-    return dataframe
+def clean_data(data):
+    # Example: Drop NA values
+    return data.dropna()

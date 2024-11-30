@@ -16,18 +16,3 @@ def train_model(data):
 
 def save_model(model, filepath="models/iris_rf_model.pkl"):
     joblib.dump(model, filepath)
-
-def load_model(filepath="models/iris_rf_model.pkl"):
-    return joblib.load(filepath)
-
-if __name__ == "__main__":
-    from iris_ml_package.data_processing import load_data, clean_data
-    from iris_ml_package.feature_engineering import scale_features
-    from iris_ml_package.model_training import train_model, save_model
-
-    data = load_data()
-    data = clean_data(data)
-    data = scale_features(data)
-    model = train_model(data)
-    save_model(model)
-
